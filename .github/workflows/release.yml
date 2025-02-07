@@ -23,6 +23,8 @@ jobs:
           echo $(date +"%Y%m%d%H%M") > dist.txt
           echo "New changes:::::::" >> dist.txt
           echo "file_name=dist.txt" >> $GITHUB_OUTPUT
+          echo "tag_name=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+          echo "release_name=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
 
       - name: "Build Changelog"
         id: build_changelog
@@ -39,8 +41,8 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
-          name: "Stable release"
-          tag_name: "stable"
+          name: ${{ steps.artifacts.outputs.release_name }}
+          tag_name: ${{ steps.artifacts.outputs.release_name }}
           prerelease: false
           body: ${{ steps.build_changelog.outputs.changelog }}
           files: |
