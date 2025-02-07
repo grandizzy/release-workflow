@@ -30,7 +30,7 @@ jobs:
           configuration: "./.github/changelog.json"
           token: ${{ secrets.GITHUB_TOKEN }}
           fromTag: "v0.1.0"
-          toTag: "v0.2.0"
+          toTag: "v1.0.0"
 
       - name: "Use Changelog"
         run: echo "${{ steps.build_changelog.outputs.changelog }}"
