@@ -6,7 +6,11 @@ on:
 
 jobs:
   build-changelog:
-    name: "Build Changelog"
+    permissions:
+      id-token: write
+      contents: write
+      attestations: write
+    name: "Release"
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout Code"
