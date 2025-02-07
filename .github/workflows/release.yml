@@ -21,6 +21,7 @@ jobs:
         shell: bash
         run: |
           echo $(date +"%Y%m%d%H%M") > dist.txt
+          echo "New changes:::::::" >> dist.txt
           echo "file_name=dist.txt" >> $GITHUB_OUTPUT
 
       - name: "Build Changelog"
