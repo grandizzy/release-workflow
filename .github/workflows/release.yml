@@ -22,7 +22,7 @@ jobs:
         shell: bash
         run: |
           echo $(date +"%Y%m%d%H%M") > dist.txt
-          echo "New changes:::::::" >> dist.txt
+          echo "New changes v2:::::::" >> dist.txt
           echo "file_name=dist.txt" >> $GITHUB_OUTPUT
           echo "tag_name=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
           echo "release_name=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
