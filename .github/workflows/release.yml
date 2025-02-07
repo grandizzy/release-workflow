@@ -12,6 +12,13 @@ jobs:
       - name: "Checkout Code"
         uses: actions/checkout@v4
 
+      - name: Create artifact
+        id: artifacts
+        shell: bash
+        run: |
+          echo $(date +"%Y%m%d%H%M") > dist.txt
+          echo "file_name=dist.txt" >> $GITHUB_OUTPUT
+
       - name: "Build Changelog"
         id: build_changelog
         uses: mikepenz/release-changelog-builder-action@v5
@@ -23,3 +30,14 @@ jobs:
 
       - name: "Use Changelog"
         run: echo "${{ steps.build_changelog.outputs.changelog }}"
+   
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "Stable release"
+          tag_name: "stable"
+          prerelease: false
+          body: ${{ steps.build_changelog.outputs.changelog }}
+          files: |
+            ${{ steps.artifacts.outputs.file_name }}
+ 
